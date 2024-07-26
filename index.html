@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"content="width=device-width, incial-scale=1.0">
-        <link rel="shortcut icon" href="Bhaskara.jpg" type="image/x-icon"/>
-        <link rel= "stylesheet" href="style.css">
-        <title>Calculadora de Bhaskara</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Velocidade</title>
+</head>
 <body>
-    <h1>Calculadora de Bhaskara</h1>
-    <p>Para utilizar esta calculadora automática de Bhaskara, recarregue o site para aparecer as barras de informações e
-    insira os valores das variáveis a, b e c. O nosso site primeiro te dará o valor do delta e depois calculará a Bhaskara, fornecendo os valores de x1 e x2."</p>
-    <script> 
-        var nome = window.prompt("Qual é seu nome?")
-        var quantidadeLetras = nome.length;
-           window.alert("Olá, seu nome tem: " +quantidadeLetras+ " letras. ")
-           document.write("Olá, seu nome tem: " +quantidadeLetras+ " letras. ")
-                     
-        var a = Number(window.prompt("Digite valor de a"))
-        var b = Number(window.prompt("Digite valor de b"))
-        var c = Number(window.prompt("Digite valor de c"))
-        
-        var delta = b * b - 4 * a * c
-           window.alert("O valor de delta é: " +delta+ ". ")
-           document.write("O valor de delta é: " +delta+ ". ")
-        
-        var x1 = (-b + (delta ** 0.5) / (2 * a))
-        var x2 = (-b - (delta ** 0.5) / (2 * a))
-           window.alert("Os resultados são: " + x1 + " e " +x2+ ". ")
-           document.write("Os resultados são: " + x1 + " e " +x2+ ". ")
-   </script>
-<div id="nome"></div>
-<div id="delta"></div>
-<div id="resultados"></div>
+    <h1>Radar Velocidade</h1>
+    
+    <p>Qual é a velocidade máxima da via?</p>
+    <input type="text" id="via">
+    <br>
+    
+    <p>Qual a velocidade que você passou no radar?</p>
+    <input type="text" id="velocidadeusuario">
+    <br>
+    
+    <button onclick="calcular()">Enviar</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+        function calcular() {
+            var via = parseFloat(document.getElementById('via').value.trim());
+            var velocidadeusuario = parseFloat(document.getElementById('velocidadeusuario').value.trim());
+            var resultadoDiv = document.getElementById('resultado');
+            
+            if (via && velocidadeusuario) {
+                var excesso = velocidadeusuario - via;
+                if (excesso > 0) {
+                    var percentualExcesso = (excesso / via) * 100;
+                    if (percentualExcesso <= 10) {
+                        resultadoDiv.innerHTML = "Você pagará R$100,00.";
+                    } else if (percentualExcesso <= 20) {
+                        resultadoDiv.innerHTML = "Você pagará R$200,00.";
+                    } else {
+                        resultadoDiv.innerHTML = "Você pagará R$300,00.";
+                    }
+                } else {
+                    resultadoDiv.innerHTML = "Você está dentro do limite de velocidade.";
+                }
+            }
+        }
+    </script>
 </body>
 </html>
-    
+
 
